@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="We are one of the most prestigious school with higher level of educated faculties globally."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <title>Spring Flowers School</title>
+  </head>
+  <script>
+    let data = JSON.parse(localStorage.getItem("userInfo"));
+    if(data != undefined || data != null || data?.length > 0){
+      window.location.replace("http://127.0.0.1:5500/index.html")
+    }
+  </script>
+  <body>
+    <dialog id="loading-popup">
+      <div class="position-fixed w-100 h-100 z-3 border-0 d-flex justify-content-center align-items-center">
+        <div class="lds-ripple"><div></div><div></div></div>
+      </div>
+    </dialog>
+    <div class="container overflow-hidden" style="height: 100vh">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-8 d-md-block d-none">
+          <img src="./assets/imgs/login.svg" width="400" alt="login" />
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <h2 class="ml-2 mb-4">Welcome!</h2>
+          <form
+            class="d-flex w-100 flex-column justify-content-start align-items-center">
+            <div class="d-flex flex-column w-100 w-md-50 position-relative">
+              <i class="fa-regular fa-user position-absolute input-prefix"></i>
+              <input
+                class="input-box email px-5 py-2 focus-ring focus-ring-primary"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter your Username"
+                title="Username should be entered here!"
+                required
+              />
+              <div class="error-text email-error-text"></div>
+            </div>
+            <div class="d-flex flex-column w-100 w-md-50 position-relative">
+              <i class="fa-solid fa-lock position-absolute input-prefix"></i>
+              <input
+                class="input-box password px-5 py-2 focus-ring focus-ring-primary"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter your password"
+                title="Password should be entered here!"
+                required
+              />
+              <i class="fa-regular fa-eye position-absolute input-suffix"></i>
+              <div class="error-text password-error-text"></div>
+            </div>
+            <div class="d-flex flex-column w-100 w-md-50">
+              <a
+                class="fw-light mb-2 forget-button"
+                href="javascript:;"
+                target="_blank"
+                >Having trouble in sign in?</a
+              >
+              <input class="w-100 py-2 submit-button" type="submit" value="Login In" />
+            </div>
+          </form>
+          <p class="text-center mt-4 or-sign-in-with-text">Or Sign in with</p>
+          <div class="d-flex justify-content-center gap-2 w-100 mt-2">
+            <button class="d-flex align-items-center justify-content-center px-2 py-2 other-auth-button">
+              <img class="mx-1" src="./assets/imgs/google.png" height="20" alt="google"/>
+              <p class="mx-1">Google</p>
+            </button>
+            <button class="d-flex align-items-center justify-content-center px-2 py-2 other-auth-button">
+              <i class="mx-1 fa-brands fa-facebook-f"></i>
+              <p class="mx-1">Facebook</p>
+            </button>
+          </div>
+          <div class="d-flex align-items-center justify-content-center mt-3 signup-option">
+            <p>Don't have an account? &nbsp;</p>
+            <a href="#">Signup Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./script.js"></script>
+</html>
