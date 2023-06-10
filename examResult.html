@@ -32,7 +32,7 @@
   </head>
   <body>
     <header class="container-fluid bg-white">
-      <div class="container d-flex justify-content-between align-items-center">
+      <div class="container d-flex justify-content-between align-items-center py-2 py-lg-0">
         <div class="flex-grow-1">
           <a
             class="d-flex gap-3 align-items-center text-black header_logo_link"
@@ -46,7 +46,7 @@
             <span>Spring Flowers school</span>
           </a>
         </div>
-        <div class="flex-grow-1">
+        <div class="flex-grow-1 d-lg-block d-none">
           <ul
             class="d-flex align-items-center gap-2 justify-content-end header_menu m-0"
           >
@@ -54,10 +54,10 @@
               <a href="./timeTable.html">Time Table</a>
             </li>
             <li class="header_menu_item">
-              <a href="">Exam Result</a>
+              <a href="./examResult.html">Exam Result</a>
             </li>
             <li class="header_menu_item">
-              <a href="./extraActivity.html">Extra Activity</a>
+              <a href="">Extra Activity</a>
             </li>
             <li class="header_menu_item">
               <div class="dropdown">
@@ -69,9 +69,11 @@
                   aria-expanded="false"
                 >
                   <img
-                    src="./assets/imgs/profile.png"
+                    src=""
                     height="30"
                     width="30"
+                    id="profile-img"
+                    class="rounded-circle"
                     alt=""
                   />
                   <p>
@@ -104,6 +106,59 @@
               </div>
             </li>
           </ul>
+        </div>
+        <div class="flex-grow-1 d-flex justify-content-end align-items-center d-lg-none">
+          <div class="header_menu_item">
+            <div class="dropdown">
+              <a
+                class="btn btn-secondary dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-bars"></i>
+              </a>
+
+              <ul class="dropdown-menu">
+                <li>
+                  <a  class="dropdown-item d-flex align-items-center gap-3" href="./timeTable.html">
+                    <i class="fa-solid fa-table"></i>
+                    <span>Time Table</span>
+                  </a>
+                </li>
+                <li>
+                  <a  class="dropdown-item d-flex align-items-center gap-3"  href="">
+                    <i class="fa-solid fa-square-poll-vertical"></i>
+                    <span>Exam Result</span>
+                  </a>
+                </li>
+                <li>
+                  <a  class="dropdown-item d-flex align-items-center gap-3"  href="./extraActivity.html">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Extra Activity</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item d-flex align-items-center gap-3" href="./studentProfile.html"
+                    >
+                    <i class="fa-regular fa-user"></i>
+                    <span>student Profile</span></a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <button
+                    type="button"
+                    class="dropdown-item text-danger fw-bold logout-btn d-flex align-items-center gap-3"
+                  >
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -331,9 +386,15 @@
       </table>
     </main>
     <footer class="container-fluid bg-black">
-      <div class="container d-flex justify-content-between text-white align-items-center py-4">
-        <p class="">Copyright &copy; 2023 Spring Flower School. <b>All rights reserved</b></p>
-        <ul class="d-flex justify-content-around gap-5 align-items-center m-0 list-unstyled">
+      <div
+        class="container d-flex flex-column flex-md-row justify-content-between text-white align-items-center py-4"
+      >
+        <p class="text-center">
+          Copyright &copy; 2023 Spring Flower School. <b>All rights reserved</b>
+        </p>
+        <ul
+          class="d-flex flex-column flex-md-row justify-content-around gap-2 gap-md-5 align-items-center my-3 m-md-0 list-unstyled"
+        >
           <li>
             <a href="">Privacy Policy</a>
           </li>
@@ -350,7 +411,9 @@
     ></script>
     <script>
       var data = JSON.parse(localStorage.getItem("userInfo"));
-      document.querySelector(".profile-name").innerHTML = data[0]["firstName"]
+      console.log(data[0]['personalInfo']['firstName']);
+      document.querySelector(".profile-name").innerHTML = data[0]['personalInfo']['firstName'];
+      document.querySelector("#profile-img").src = data[0]['personalInfo']['profileImg'] || "./assets/img/profile.jpg";
     </script>
   </body>
 </html>

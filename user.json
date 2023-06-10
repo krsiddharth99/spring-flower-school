@@ -1,0 +1,55 @@
+{
+    "users":[{
+            "username":"sidplayer4@gmail.com",
+            "password":"demo1234",
+            "personalInfo":{
+                "profileImg":"./assets/imgs/profile.png",
+                "firstName":"Siddharth",
+                "middleName":"",
+                "lastName":"Kumar",
+                "age":22,
+                "dob":"21/02/2001",
+                "numberOfSibling":3
+            },
+            "parentInfo":{
+              "motherName":"Pushplata Devi",
+              "fatherName":"Hemant Kumar",
+              "totalFamilyMember":5  
+            },
+            "addressInfo":{
+                "address1":"M IIC/112, Sector-C",
+                "address2":"Aliganj, Yojankipuram, Sitapure Road",
+                "city":"Lucknow",
+                "country":"India",
+                "pincode":"226021",
+                "citizen":"Indian"
+            }
+        },
+        {
+            "username":"ismail4@gmail.com",
+            "password":"ismail1234",
+            "personalInfo":{
+                "profileImg":"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80",
+                "firstName":"Muhammad Ismail",
+                "middleName":"",
+                "lastName":"Thouheed",
+                "age":21,
+                "dob":"09/06/2002",
+                "numberOfSibling":6
+            },
+            "parentInfo":{
+              "motherName":"Momina Mutehasan",
+              "fatherName":"Zail malik",
+              "totalFamilyMember":9  
+            },
+            "addressInfo":{
+                "address1":"1/22C, Parnambut",
+                "address2":"Ambur, Vellore",
+                "city":"Ambur",
+                "country":"India",
+                "pincode":"226021",
+                "citizen":"Indian"
+            }
+        }
+    ]
+}

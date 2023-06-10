@@ -1,3 +1,11 @@
+/******************** Fetching data **********************/
+let userData = [];
+fetch('./user.json')
+.then((response) => response.json())
+.then((json) => {
+  userData.push(JSON.parse(JSON.stringify(json))['users']);
+});
+
 var gradient = [
   "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)",
   "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)",
@@ -11,6 +19,7 @@ var passwordElement = document.querySelector(".password");
 var emailErrorText = document.querySelector(".email-error-text");
 var passwordErrorText = document.querySelector(".password-error-text");
 var logoutBox = document.getElementById('loading-popup');
+var isPasswordVisible = false;
 
 /******************** LOGIN DATA VALUE ************************************/
 var email = "";
@@ -68,10 +77,27 @@ document
     localStorage.removeItem("userActivity");
     window.location.replace("http://127.0.0.1:5500/login.html");
   });
+document.querySelectorAll('.input-suffix').forEach(iconBtn=>{
+  iconBtn.onclick = () =>{
+    let eye1 = document.querySelector('.fa-eye');
+    let eye2 = document.querySelector('.fa-eye-slash');
+
+    isPasswordVisible = !isPasswordVisible;
+
+    if(isPasswordVisible){
+      document.getElementById('password').type = "text";
+      eye1.style.display = "inline";
+      eye2.style.display = "none";
+    }else{
+      document.getElementById('password').type = "password";
+      eye2.style.display = "inline";
+      eye1.style.display = "none";
+    }
+  }
+});
 
 document
-  .querySelector(".submit-button")
-  ?.addEventListener("click", function (event) {
+  .querySelector(".submit-button")?.addEventListener("click", function (event) {
     event.preventDefault();
     if (
       (email.length === 0 || email.length === null) &&
@@ -88,44 +114,42 @@ document
           emailErrorText.innerHTML = "";
           passwordElement.style.border = "1px solid red";
           passwordErrorText.innerHTML = "Please enter your password.";
-        } else if (email !== "demo@gmail.com" || password !== "demo@1234") {
-          emailElement.style.border = "1px solid red";
-          emailErrorText.innerHTML = "Invalid email.";
-          passwordElement.style.border = "1px solid red";
-          passwordErrorText.innerHTML = "Invalid password.";
         } else {
-          emailElement.style.border = "1px solid #d8d8d8";
-          emailErrorText.innerHTML = "";
-          passwordElement.style.border = "1px solid #d8d8d8";
-          passwordErrorText.innerHTML = "";
-          logoutBox.show()
-          localStorage.setItem(
-            "userInfo",
-            JSON.stringify([
-              {
-                firstName: "Siddharth",
-                middleName: "",
-                lastName: "Kumar",
-                age: 22,
-                dob: "21-02-2001",
-                sibling: 3,
-                fatherName: "Hemant Kumar",
-                motherName: "Pushplata Devi",
-                totalFamily: 5,
-                addressLine1: "M IIC/112,Sector-C",
-                addressLine2: "Aliganj,Yojanakipuram, Sitapur Road",
-                city: "Lucknow",
-                country: "India",
-                pincode: "226021",
-                citizen: "India",
-              },
-            ])
-          );
-          localStorage.setItem("userActivity", JSON.stringify([]));
-          setTimeout(()=>{
-            logoutBox.close()
-            window.location.replace("http://127.0.0.1:5500/index.html");
-          },6000)
+          let validUser = false;
+          let validUserdata = {};
+          for (let i = 0; i< userData[0].length;i++) {
+            if (email == userData[0][i]['username'] && password == userData[0][i]['password']) {
+              console.log('done');
+              validUser = true;
+              validUserdata = userData[0][i]
+              break;
+            }
+          }
+          if(validUser){
+            emailElement.style.border = "1px solid #d8d8d8";
+              emailErrorText.innerHTML = "";
+              passwordElement.style.border = "1px solid #d8d8d8";
+              passwordErrorText.innerHTML = "";
+              logoutBox.show()
+              localStorage.setItem(
+                "userInfo",
+                JSON.stringify([
+                  validUserdata
+                ])
+              );
+              localStorage.setItem("userActivity", JSON.stringify([]));
+              setTimeout(()=>{
+                logoutBox.close()
+                window.location.replace("http://127.0.0.1:5500/index.html");
+              },6000)
+          }else{
+              emailElement.style.border = "1px solid red";
+              emailErrorText.innerHTML = "Invalid email.";
+              passwordElement.style.border = "1px solid red";
+              passwordErrorText.innerHTML = "Invalid password.";
+              console.log('if')
+          }
+
         }
       } else {
         emailElement.style.border = "1px solid red";
