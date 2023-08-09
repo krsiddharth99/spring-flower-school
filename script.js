@@ -6,7 +6,7 @@ fetch('./user.json')
   userData.push(JSON.parse(JSON.stringify(json))['users']);
 });
 
-var gradient = [
+let gradient = [
   "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)",
   "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)",
   "linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)",
@@ -14,33 +14,33 @@ var gradient = [
   "linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)",
 ];
 /******************** LOGIN PAGE VARIABLE ******************************/
-var emailElement = document.querySelector(".email");
-var passwordElement = document.querySelector(".password");
-var emailErrorText = document.querySelector(".email-error-text");
-var passwordErrorText = document.querySelector(".password-error-text");
-var logoutBox = document.getElementById('loading-popup');
-var isPasswordVisible = false;
+let emailElement = document.querySelector(".email");
+let passwordElement = document.querySelector(".password");
+let emailErrorText = document.querySelector(".email-error-text");
+let passwordErrorText = document.querySelector(".password-error-text");
+let logoutBox = document.getElementById('loading-popup');
+let isPasswordVisible = false;
 
 /******************** LOGIN DATA VALUE ************************************/
-var email = "";
-var password = "";
-var mailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+let email = "";
+let password = "";
+let mailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 /******************** ACTIVITY PAGE VARIABLE ******************************/
 
-var activityTitleElement = document.querySelector(".activity-title");
-var activityTimeElement = document.querySelector(".activity-date-time");
-var activityDescElement = document.querySelector(".activity-desc");
-var activityTitleErrorText = document.querySelector(
+let activityTitleElement = document.querySelector(".activity-title");
+let activityTimeElement = document.querySelector(".activity-date-time");
+let activityDescElement = document.querySelector(".activity-desc");
+let activityTitleErrorText = document.querySelector(
   ".activity-title-error-text"
 );
-var activityTimeErrorText = document.querySelector(".activity-time-error-text");
-var activityDescErrorText = document.querySelector(".activity-desc-error-text");
+let activityTimeErrorText = document.querySelector(".activity-time-error-text");
+let activityDescErrorText = document.querySelector(".activity-desc-error-text");
 
 /******************** ACTIVITY DATA VALUE ************************************/
-var activityTitle = "";
-var activityTime = "";
-var activityDesc = "";
+let activityTitle = "";
+let activityTime = "";
+let activityDesc = "";
 
 /******************* ACTIVITY FIELD UPDATE **************************************/
 document
@@ -70,13 +70,15 @@ document
   });
 
 document
-  .querySelector(".logout-btn")
-  ?.addEventListener("click", function (event) {
-    event.preventDefault();
-    localStorage.removeItem("userInfo");
-    localStorage.removeItem("userActivity");
-    window.location.replace("http://127.0.0.1:5500/login.html");
+  .querySelectorAll(".logout-btn").forEach(btn =>{
+    btn.onclick = (event) =>{
+      event.preventDefault();
+      localStorage.removeItem("userInfo");
+      localStorage.removeItem("userActivity");
+      window.location.replace("http://127.0.0.1:5500/login.html");
+    }
   });
+
 document.querySelectorAll('.input-suffix').forEach(iconBtn=>{
   iconBtn.onclick = () =>{
     let eye1 = document.querySelector('.fa-eye');
@@ -215,7 +217,16 @@ document
     (activityDesc.length !== null || activityDesc.length !== 0 || activityDesc !== "") &&
     (activityTitle.length !== null ||
     activityTitle.length !== 0 || activityTitle !== "")){
-      var data = JSON.parse(localStorage.getItem("userActivity")) || [];
+      activityTitleElement.style.border = "1px solid #d8d8d8";
+      activityTitleElement.value = ""
+      activityTitleErrorText.innerHTML = "";
+      activityTimeElement.style.border = "1px solid #d8d8d8";
+      activityTimeElement.value = ""
+      activityTimeErrorText.innerHTML = "";
+      activityDescElement.style.border = "1px solid #d8d8d8";
+      activityDescElement.value = "";
+      activityDescErrorText.innerHTML = "";
+      let data = JSON.parse(localStorage.getItem("userActivity")) || [];
       data.push({
         title: activityTitle,
         time: activityTime,
@@ -227,8 +238,8 @@ document
   });
 
 function renderActivityCard() {
-  var activityElementSection = document.querySelector(".activity-card-section");
-  var userActivities = JSON.parse(localStorage.getItem("userActivity")) || [];
+  let activityElementSection = document.querySelector(".activity-card-section");
+  let userActivities = JSON.parse(localStorage.getItem("userActivity")) || [];
   activityElementSection.innerHTML = "";
   if (userActivities.length <= 0) {
     activityElementSection.innerHTML = `<div class="d-flex flex-column justify-content-center align-items-center h-100">

@@ -255,16 +255,18 @@ header {
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 15px;
 }
-
-/*************************** Home Page ***********************************/
-.home-page{
-  background-image: url(./assets/imgs/home3.jpg);
-  background-repeat: no-repeat;
-  background-size: 100% 150%;
+@media (max-width:1023px) {
+  .home-activity-section{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    gap: 5px;
+  }
 }
+/*************************** Home Page ***********************************/
+
 /*************************** footer **************************************/
 footer{
-  margin-top: 300px;
+  margin-top: 350px;
 }
 
 /*************************** loader **************************************/

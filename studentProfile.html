@@ -57,7 +57,7 @@
               <a href="./examResult.html">Exam Result</a>
             </li>
             <li class="header_menu_item">
-              <a href="">Extra Activity</a>
+              <a href="./extraActivity.html">Extra Activity</a>
             </li>
             <li class="header_menu_item">
               <div class="dropdown">
@@ -179,7 +179,7 @@
           </button>
         </div>
         <div>
-          <h1>Hi! Siddharth</h1>
+          <h1 class="student-name" id="student-name">Hi! Siddharth</h1>
         </div>
       </div>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -561,6 +561,22 @@
       var data = JSON.parse(localStorage.getItem("userInfo"));
       console.log(data[0]['personalInfo']['firstName']);
       document.querySelector(".profile-name").innerHTML = data[0]['personalInfo']['firstName'];
+      document.querySelector(".student-name").innerHTML = "Hi! "+data[0]['personalInfo']['firstName'];
+      document.querySelector("#first").value = data[0]['personalInfo']['firstName'];
+      document.querySelector("#middle").value = data[0]['personalInfo']['middleName'];
+      document.querySelector("#last").value = data[0]['personalInfo']['lastName'];
+      document.querySelector("#age").value = data[0]['personalInfo']['age'];
+      // document.querySelector("#dob").value = data[0]['personalInfo']['dob'];
+      document.querySelector("#sibling").value = data[0]['personalInfo']['numberOfSibling'];
+      document.querySelector("#father-name").value = data[0]['parentInfo']['fatherName'];
+      document.querySelector("#mother-name").value = data[0]['parentInfo']['motherName'];
+      document.querySelector("#total-family").value = data[0]['parentInfo']['totalFamilyMember'];
+      document.querySelector("#address-line-1").value = data[0]['addressInfo']['address1'];
+      document.querySelector("#address-line-2").value = data[0]['addressInfo']['address2'];
+      document.querySelector("#city").value = data[0]['addressInfo']['city'];
+      document.querySelector("#Country").value = data[0]['addressInfo']['country'];
+      document.querySelector("#zipcode").value = data[0]['addressInfo']['pincode'];
+      document.querySelector("#citizen").value = data[0]['addressInfo']['citizen'];
       document.querySelector("#profile-img").src = data[0]['personalInfo']['profileImg'] || "./assets/img/profile.jpg";
       document.querySelector("#student-profile-img").src = data[0]['personalInfo']['profileImg'] || "./assets/img/profile.jpg";
     </script>
